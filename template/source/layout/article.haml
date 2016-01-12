@@ -1,0 +1,29 @@
+- categories = current_article.data.category.to_s.split('/')
+!!!
+%html
+  %head= partial 'partials/head'
+  %body.posts-show.sharing-post
+    = partial 'partials/navbar'
+    .body
+      .container.row
+        .posts-header
+          .page-heading
+            .posts-title
+              %ul.categories
+                - categories = current_article.data.category.to_s.split('/')
+                - categories.each.with_index do |category, i|
+                  %li= link_to category, category_path(categories[0..i].join('/'))
+              %h1.title
+                = current_article.title
+                - current_article.tags.each do |tag|
+                  = link_to tag_path(tag), class: 'hashtag' do
+                    = '#'
+                    = tag
+            .published-time
+              %i.fa.fa-share-square-o
+              Updated at
+              %span.num<>= current_article.data.updated_at
+        #main.main-column{:role => "main"}
+          .post-body.markdown= yield
+        .right-column= partial 'partials/side_bar'
+    = partial 'partials/footer'

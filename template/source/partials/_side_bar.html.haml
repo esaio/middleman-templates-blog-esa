@@ -1,0 +1,37 @@
+%aside.side-bar
+  %section.section
+    %h2.side-bar__heading
+      %i.fa.fa-file-text-o
+      Recent Articles
+    .side-bar__content
+      %ul.posts-list.side-bar__posts-list
+        - blog.articles[0...10].each do |article|
+          %li.post-list
+            %ul.categories
+              - categories = article.data.category.to_s.split('/')
+              - categories.each do |category|
+                %li= category
+            %h4.title
+              = link_to article, class: 'bare-name' do
+                = article.title
+            .date= article.date.strftime('%Y - %m - %d')
+  %section.section
+    %h2.side-bar__heading
+      %i.fa.fa-tag
+      Tags
+    %ol.side-bar__list
+      - blog.tags.each do |tag, articles|
+        %li
+          = link_to tag_path(tag) do
+            = tag
+            %span.count-num= articles.size
+  %section.section
+    %h2.side-bar__heading
+      %i.fa.fa-folder-o
+      Category
+    %ol.side-bar__list
+      - blog.root_categories.each do |category, articles|
+        %li
+          = link_to category_path(category) do
+            = category
+            %span.count-num= articles.size

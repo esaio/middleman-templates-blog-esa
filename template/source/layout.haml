@@ -1,0 +1,11 @@
+!!!
+%html
+  %head= partial 'partials/head'
+  %body
+    = partial 'partials/navbar'
+    .body.sharing-post
+      .container.row
+        #main.main-column{:role => "main"}
+          .post-body= yield
+        .right-column= partial 'partials/side_bar'
+    = partial 'partials/footer'

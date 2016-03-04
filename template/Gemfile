@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'middleman'
+gem 'middleman', '4.0.0'
 gem 'middleman-blog', github: 'fukayatsu/middleman-blog', branch: 'v4-esa-ext'
 gem 'middleman-livereload'
 
